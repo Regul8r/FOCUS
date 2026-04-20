@@ -23,7 +23,12 @@ st.markdown("""
     .stApp { background-color: #0a0a0a; color: #f0f0f0; }
     .stButton button { border: none !important; }
     #MainMenu, footer, header { visibility: hidden; }
-    .block-container { padding-top: 1rem; }
+    .block-container { padding-top: 1rem; max-width: 100% !important; padding-left: 1rem !important; padding-right: 1rem !important; }
+@media (max-width: 768px) {
+    .focus-title { font-size: 1.8rem !important; }
+    .summary-bar { flex-wrap: wrap; gap: 8px; }
+    .summary-pill { font-size: 0.7rem !important; }
+}
     .face-card {
         border-radius: 14px;
         padding: 22px 18px 16px;
