@@ -1,15 +1,16 @@
 """
 FOCUS - Financial Data Publisher
 Run this in Terminal 1: python3 publisher.py
-
-Publishes account data via MQTT AND writes to a local JSON file.
-Streamlit reads the JSON file — reliable, no threading issues.
 """
 
 import json
 import time
 import os
 import paho.mqtt.client as mqtt
+from dotenv import load_dotenv
+from plaid_service import get_balances
+
+load_dotenv()
 
 # ─── CONFIG ───────────────────────────────────────────────────────────────────
 BROKER    = "broker.hivemq.com"
@@ -17,16 +18,39 @@ PORT      = 1883
 TOPIC     = "focus/accounts"
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "focus_data.json")
 
-# ─── ACCOUNT DATA ─────────────────────────────────────────────────────────────
-ACCOUNTS = [
-    {"id": 1, "name": "Checking",    "icon": "🏦", "balance": 847.50,  "goal": 500.00,  "type": "savings", "category": "Everyday spending"},
-    {"id": 2, "name": "Savings",     "icon": "💰", "balance": 2340.00, "goal": 1000.00, "type": "savings", "category": "Emergency fund"},
-    {"id": 3, "name": "Credit Card", "icon": "💳", "balance": 680.00,  "goal": 500.00,  "type": "credit",  "category": "Monthly spending"},
-    {"id": 4, "name": "Rent Fund",   "icon": "🏠", "balance": 1200.00, "goal": 1200.00, "type": "savings", "category": "Fixed expense"},
-    {"id": 5, "name": "Vacation Money", "icon": "🚢", "balance": 45.00,   "goal": 90.00,  "type": "savings", "category": "Vacation Fund"},
-    {"id": 6, "name": "Car Maintenance", "icon": "🚘", "balance": 85.00, "goal": 200.00, "type": "savings", "category": "Car fund"},
-]
+ACCESS_TOKEN = os.getenv('PLAID_ACCESS_TOKEN')
 
+#  ─── ACCOUNT GOALS er defined) ────────────
+GOALS = {
+    "Plaid Checking":      {"goal": 500.00,   "type": "savings", "icon": "🏦", "category": "Everyday spending"},
+    "Plaid Saving":        {"goal": 1000.00,  "type": "savings", "icon": "💰", "category": "Emergency fund"},
+    "Plaid Credit Card":   {"goal": 500.00,   "type": "credit",  "icon": "💳", "category": "Monthly spending"},
+    "Plaid Money Market":  {"goal": 10000.00, "type": "savings", "icon": "📈", "category": "Savings goal"},
+}
+
+
+def get_accounts():
+    try:
+        plaid_accounts = get_balances(ACCESS_TOKEN)
+        accounts = []
+        for i, acct in enumerate(plaid_accounts):
+            name = acct['name']
+            if name not in GOALS:
+                continue
+            meta = GOALS[name]
+            accounts.append({
+                "id": i + 1,
+                "name": name,
+                "icon": meta["icon"],
+                "balance": acct['balance'] or 0,
+                "goal": meta["goal"],
+                "type": meta["type"],
+                "category": meta["category"]
+            })
+        return accounts
+    except Exception as e:
+        print(f"Plaid error: {e}")
+        return []
 
 def get_health(account):
     balance = account["balance"]
@@ -44,7 +68,7 @@ def get_health(account):
 
 
 def build_payload():
-    return [{**acct, "health": get_health(acct)} for acct in ACCOUNTS]
+    return [{**acct, "health": get_health(acct)} for acct in get_accounts()]
 
 
 def main():
