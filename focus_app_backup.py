@@ -21,7 +21,6 @@ st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
     .stApp { background-color: #0a0a0a; color: #f0f0f0; }
-    .stButton button { border: none !important; }
     #MainMenu, footer, header { visibility: hidden; }
     .block-container { padding-top: 1rem; }
     .face-card {
@@ -106,12 +105,12 @@ def progress_bar(account):
         pct = max(0, min(100, (1 - balance / goal) * 100)) if goal > 0 else 0
     else:
         pct = max(0, min(100, (balance / goal) * 100)) if goal > 0 else 0
-    return (
-        f'<div class="prog-track">'
-        f'<div class="prog-fill-{health}" style="width:{pct:.0f}%"></div>'
-        f'</div>'
-        f'<div class="face-goal">Goal: ${goal:,.0f} &nbsp;&middot;&nbsp; {pct:.0f}% there</div>'
-    )
+    return f"""
+    <div class="prog-track">
+        <div class="prog-fill-{health}" style="width:{pct:.0f}%"></div>
+    </div>
+    <div class="face-goal">Goal: ${goal:,.0f} &nbsp;·&nbsp; {pct:.0f}% there</div>
+    """
 
 # ─── RENDER FACE ───────────────────────────────────────────────────────────────
 def render_face(account, col):
@@ -140,7 +139,7 @@ def render_face(account, col):
             {progress_bar(account)}
         </div>""", unsafe_allow_html=True)
 
-        if st.button("Get Insight ✦", key=f"n{aid}", use_container_width=True, type="primary"):
+        if st.button("✦ Get Insight", key=f"n{aid}", use_container_width=True):
             with st.spinner("Claude is analyzing..."):
                 try:
                     st.session_state.nudges[aid] = get_nudge(account)
@@ -152,7 +151,7 @@ def render_face(account, col):
             st.markdown(f'<div class="nudge-box">✦ {st.session_state.nudges[aid]}</div>', unsafe_allow_html=True)
 
         if health == "green":
-            if st.button("Dismiss ✓", key=f"d{aid}", use_container_width=True):
+            if st.button("✓ Dismiss", key=f"d{aid}", use_container_width=True):
                 st.session_state.dismissed.add(aid)
                 st.rerun()
 
