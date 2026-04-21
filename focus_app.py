@@ -174,10 +174,13 @@ st.markdown("""
 with st.expander("⚙ Lamp Settings", expanded=False):
     col_a, col_b = st.columns(2)
     with col_a:
-        st.markdown('<div class="settings-title">Ambient lamp color</div>', unsafe_allow_html=True)
         lamp_color = st.color_picker("Pick your ambient color", value=st.session_state.lamp_color, label_visibility="collapsed")
         st.session_state.lamp_color = lamp_color
         st.markdown(f'<div style="width:100%;height:40px;border-radius:8px;background:{lamp_color};margin-top:8px"></div>', unsafe_allow_html=True)
+        user_name = st.text_input("Your name", value=st.session_state.get('user_name', ''), placeholder="Enter your name")
+        st.session_state.user_name = user_name
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "focus_config.json"), "w") as f:
+            json.dump({"lamp_color": lamp_color, "speak_hour": st.session_state.speak_hour, "user_name": user_name}, f)
     with col_b:
         st.markdown('<div class="settings-title">Daily summary time</div>', unsafe_allow_html=True)
         speak_hour = st.slider("What time should FOCUS speak?", 0, 23, st.session_state.speak_hour, label_visibility="collapsed")
