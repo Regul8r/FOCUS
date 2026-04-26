@@ -6,11 +6,15 @@
 <title>FOCUS — System Architecture Diagram</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Barlow:wght@400;600;700;900&display=swap');
-
+ 
   :root {
-    --green: #4ade80;
-    --yellow: #fbbf24;
-    --red: #f87171;
+    --green: #30D158;
+    --yellow: #FFD60A;
+    --red: #FF453A;
+    --purple: #a855f7;
+    --blue: #3b82f6;
+    --teal: #14b8a6;
+    --orange: #f97316;
     --bg: #080909;
     --panel: #0f1010;
     --border: #1a1c1a;
@@ -18,18 +22,17 @@
     --text: #d4dbd4;
     --muted: #4a5248;
     --accent: #6aab5a;
-    --code-bg: #060707;
   }
-
+ 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
   body {
     background: var(--bg);
     color: var(--text);
     font-family: 'Barlow', sans-serif;
     padding: 48px 32px 80px;
   }
-
+ 
   body::before {
     content: '';
     position: fixed;
@@ -42,10 +45,10 @@
     pointer-events: none;
     z-index: 0;
   }
-
+ 
   .wrapper { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; }
-
-  /* ── HEADER ── */
+ 
+  /* HEADER */
   .header {
     display: flex;
     justify-content: space-between;
@@ -54,14 +57,14 @@
     flex-wrap: wrap;
     gap: 20px;
   }
-
+ 
   .header h1 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 5rem;
     letter-spacing: 0.08em;
     line-height: 1;
   }
-
+ 
   .header-meta {
     font-family: 'Space Mono', monospace;
     font-size: 0.62rem;
@@ -69,14 +72,14 @@
     letter-spacing: 0.12em;
     line-height: 2;
   }
-
+ 
   .header-badges {
     display: flex;
     flex-direction: column;
     gap: 6px;
     align-items: flex-end;
   }
-
+ 
   .badge {
     background: rgba(106,171,90,0.07);
     border: 1px solid rgba(106,171,90,0.2);
@@ -87,8 +90,7 @@
     color: var(--accent);
     letter-spacing: 0.08em;
   }
-
-  /* ── SECTION TITLES ── */
+ 
   .section-title {
     font-family: 'Space Mono', monospace;
     font-size: 0.62rem;
@@ -99,10 +101,10 @@
     padding-bottom: 8px;
     border-bottom: 1px solid var(--border);
   }
-
+ 
   .section { margin-bottom: 52px; }
-
-  /* ── HIGH LEVEL OVERVIEW ── */
+ 
+  /* OVERVIEW */
   .overview-box {
     background: var(--panel);
     border: 1px solid var(--border-mid);
@@ -112,9 +114,9 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 24px;
   }
-
+ 
   .overview-item { display: flex; flex-direction: column; gap: 8px; }
-
+ 
   .overview-label {
     font-family: 'Space Mono', monospace;
     font-size: 0.58rem;
@@ -122,27 +124,18 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
-
-  .overview-title {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--text);
-  }
-
-  .overview-desc {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  /* ── ARCHITECTURE FLOW ── */
+ 
+  .overview-title { font-size: 1.1rem; font-weight: 800; color: var(--text); }
+  .overview-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+ 
+  /* ARCH FLOW */
   .arch-flow {
     display: grid;
     grid-template-columns: 1fr 40px 1fr 40px 1fr 40px 1fr;
     align-items: stretch;
     gap: 0;
   }
-
+ 
   .arch-node {
     background: var(--panel);
     border: 1px solid var(--border-mid);
@@ -153,7 +146,7 @@
     gap: 10px;
     position: relative;
   }
-
+ 
   .node-flag {
     position: absolute;
     top: -1px; right: -1px;
@@ -163,47 +156,17 @@
     font-size: 0.52rem;
     letter-spacing: 0.08em;
   }
-
-  .node-flag.d1 {
-    background: rgba(74,222,128,0.08);
-    border: 1px solid rgba(74,222,128,0.2);
-    color: var(--green);
-  }
-
-  .node-flag.d2 {
-    background: rgba(251,191,36,0.08);
-    border: 1px solid rgba(251,191,36,0.2);
-    color: var(--yellow);
-  }
-
-  .node-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
-    color: var(--muted);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .node-title {
-    font-size: 1rem;
-    font-weight: 800;
-    line-height: 1.2;
-  }
-
-  .node-desc {
-    font-size: 0.78rem;
-    color: var(--muted);
-    line-height: 1.55;
-  }
-
-  .node-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin-top: auto;
-    padding-top: 8px;
-  }
-
+ 
+  .node-flag.d1 { background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2); color: var(--green); }
+  .node-flag.d2 { background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.2); color: var(--purple); }
+  .node-flag.d3 { background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2); color: var(--yellow); }
+ 
+  .node-label { font-family: 'Space Mono', monospace; font-size: 0.55rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+  .node-title { font-size: 1rem; font-weight: 800; line-height: 1.2; }
+  .node-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
+ 
+  .node-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: auto; padding-top: 8px; }
+ 
   .tag {
     background: var(--border);
     border: 1px solid var(--border-mid);
@@ -213,13 +176,13 @@
     font-size: 0.52rem;
     color: var(--muted);
   }
-
-  .tag.hi {
-    background: rgba(106,171,90,0.06);
-    border-color: rgba(106,171,90,0.18);
-    color: var(--accent);
-  }
-
+ 
+  .tag.hi { background: rgba(106,171,90,0.06); border-color: rgba(106,171,90,0.18); color: var(--accent); }
+  .tag.purple { background: rgba(168,85,247,0.06); border-color: rgba(168,85,247,0.18); color: var(--purple); }
+  .tag.blue { background: rgba(59,130,246,0.06); border-color: rgba(59,130,246,0.18); color: var(--blue); }
+  .tag.orange { background: rgba(249,115,22,0.06); border-color: rgba(249,115,22,0.18); color: var(--orange); }
+  .tag.teal { background: rgba(20,184,166,0.06); border-color: rgba(20,184,166,0.18); color: var(--teal); }
+ 
   .arch-arrow {
     display: flex;
     flex-direction: column;
@@ -228,710 +191,582 @@
     gap: 6px;
     padding-top: 32px;
   }
-
-  .arrow-shaft {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, var(--border-mid), var(--muted), var(--border-mid));
-    position: relative;
+ 
+  .arrow-shaft { width: 100%; height: 1px; background: linear-gradient(90deg, var(--border-mid), var(--muted), var(--border-mid)); }
+  .arrow-head { font-size: 0.65rem; color: var(--muted); }
+  .arrow-label { font-family: 'Space Mono', monospace; font-size: 0.48rem; color: var(--muted); letter-spacing: 0.08em; text-align: center; }
+ 
+  /* HARDWARE SECTION */
+  .hardware-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
   }
-
-  .arrow-shaft::after {
-    content: '▶';
-    position: absolute;
-    right: -5px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 0.45rem;
-    color: var(--muted);
-  }
-
-  .arrow-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.52rem;
-    color: var(--muted);
-    white-space: nowrap;
-    letter-spacing: 0.04em;
-  }
-
-  /* ── DATA FLOW ── */
-  .data-flow-grid {
+ 
+  .hw-card {
+    background: var(--panel);
+    border: 1px solid var(--border-mid);
+    border-radius: 10px;
+    padding: 20px 16px;
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+ 
+  .hw-icon { font-size: 1.8rem; }
+  .hw-name { font-size: 0.9rem; font-weight: 800; }
+  .hw-spec { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--muted); line-height: 1.8; }
+  .hw-connection { font-family: 'Space Mono', monospace; font-size: 0.55rem; padding: 3px 8px; border-radius: 3px; display: inline-block; margin-top: 4px; }
+  .hw-gpio { background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); color: var(--blue); }
+  .hw-i2c { background: rgba(20,184,166,0.08); border: 1px solid rgba(20,184,166,0.2); color: var(--teal); }
+  .hw-usb { background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.2); color: var(--orange); }
+  .hw-power { background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2); color: var(--green); }
+ 
+  /* USER FLOW */
+  .flow-row {
+    display: flex;
+    align-items: center;
     gap: 0;
     overflow-x: auto;
+    padding-bottom: 12px;
   }
-
-  .df-step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-    min-width: 110px;
-  }
-
-  .df-icon {
-    width: 52px; height: 52px;
+ 
+  .flow-step {
     background: var(--panel);
     border: 1px solid var(--border-mid);
     border-radius: 10px;
+    padding: 16px 14px;
+    min-width: 130px;
+    flex-shrink: 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
+    flex-direction: column;
+    gap: 6px;
   }
-
-  .df-name {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.58rem;
-    color: var(--muted);
-    text-align: center;
-    line-height: 1.5;
-    letter-spacing: 0.04em;
-  }
-
-  .df-transform {
-    background: rgba(106,171,90,0.06);
-    border: 1px solid rgba(106,171,90,0.15);
-    border-radius: 4px;
-    padding: 3px 8px;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.52rem;
-    color: var(--accent);
-    text-align: center;
-    max-width: 110px;
-  }
-
-  .df-arrow {
+ 
+  .flow-icon { font-size: 1.4rem; }
+  .flow-name { font-size: 0.8rem; font-weight: 700; line-height: 1.3; }
+  .flow-sub { font-size: 0.68rem; color: var(--muted); line-height: 1.4; }
+ 
+  .flow-arrow {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    padding: 0 6px;
+    flex-shrink: 0;
     gap: 4px;
-    padding: 0 4px;
-    padding-top: 14px;
-    flex-shrink: 0;
-    min-width: 36px;
   }
-
-  .df-arrow-line {
-    width: 100%;
-    height: 1px;
-    background: var(--border-mid);
-    position: relative;
-  }
-
-  .df-arrow-line::after {
-    content: '▶';
-    position: absolute;
-    right: -4px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 0.4rem;
-    color: var(--muted);
-  }
-
-  .df-arrow-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
-    color: var(--border-mid);
-    white-space: nowrap;
-  }
-
-  /* ── PSEUDOCODE ── */
-  .pseudo-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .pseudo-block {
-    background: var(--panel);
-    border: 1px solid var(--border-mid);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-
-  .pseudo-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 18px;
-    border-bottom: 1px solid var(--border);
-    background: #0b0c0b;
-  }
-
-  .pseudo-title {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--text);
-    letter-spacing: 0.08em;
-  }
-
-  .pseudo-component {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
-    color: var(--muted);
-    letter-spacing: 0.06em;
-  }
-
-  .pseudo-body {
-    padding: 18px 20px;
-    background: var(--code-bg);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    line-height: 1.9;
-    color: var(--muted);
-    white-space: pre;
-    overflow-x: auto;
-  }
-
-  .pseudo-body .kw   { color: #93c5fd; }   /* blue  — keywords */
-  .pseudo-body .fn   { color: var(--accent); } /* green — functions */
-  .pseudo-body .str  { color: var(--yellow); } /* yellow — strings */
-  .pseudo-body .cmt  { color: #2a3028; }   /* dark  — comments */
-  .pseudo-body .val  { color: #c084fc; }   /* purple — values */
-  .pseudo-body .st-g { color: var(--green); }
-  .pseudo-body .st-y { color: var(--yellow); }
-  .pseudo-body .st-r { color: var(--red); }
-
-  /* ── MQTT PAYLOAD ── */
-  .payload-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 12px;
-  }
-
+ 
+  .flow-arrow-line { width: 32px; height: 1px; background: var(--muted); }
+  .flow-arrow-label { font-family: 'Space Mono', monospace; font-size: 0.44rem; color: var(--muted); white-space: nowrap; }
+ 
+  /* PAYLOAD */
+  .payload-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+ 
   .payload-card {
-    background: var(--code-bg);
-    border: 1px solid var(--border-mid);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .payload-card-header {
-    padding: 8px 14px;
-    border-bottom: 1px solid var(--border);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.08em;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .payload-card-header .dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-  }
-
-  .dot-g { background: var(--green); box-shadow: 0 0 6px var(--green); }
-  .dot-y { background: var(--yellow); box-shadow: 0 0 6px var(--yellow); }
-  .dot-r { background: var(--red); box-shadow: 0 0 6px var(--red); }
-
-  .payload-card-body {
-    padding: 12px 14px;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    line-height: 1.9;
-    color: var(--muted);
-  }
-
-  .payload-card-body .pk { color: var(--accent); }
-  .payload-card-body .pg { color: var(--green); }
-  .payload-card-body .py { color: var(--yellow); }
-  .payload-card-body .pr { color: var(--red); }
-  .payload-card-body .pn { color: #93c5fd; }
-
-  /* ── README PREVIEW ── */
-  .readme {
     background: var(--panel);
     border: 1px solid var(--border-mid);
     border-radius: 10px;
     overflow: hidden;
   }
-
-  .readme-header {
-    background: #0b0c0b;
-    border-bottom: 1px solid var(--border);
-    padding: 12px 20px;
+ 
+  .payload-card-header {
     display: flex;
     align-items: center;
     gap: 10px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+  }
+ 
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-g { background: var(--green); box-shadow: 0 0 8px var(--green); }
+  .dot-y { background: var(--yellow); box-shadow: 0 0 8px var(--yellow); }
+  .dot-r { background: var(--red); box-shadow: 0 0 8px var(--red); }
+ 
+  .payload-card-body {
+    padding: 16px;
     font-family: 'Space Mono', monospace;
     font-size: 0.62rem;
+    line-height: 1.9;
     color: var(--muted);
   }
-
-  .readme-body {
-    padding: 24px 28px;
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.8;
-  }
-
-  .readme-body h2 {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    margin: 20px 0 8px;
-    text-transform: uppercase;
-  }
-
-  .readme-body h2:first-child { margin-top: 0; }
-
-  .readme-body p { margin-bottom: 10px; color: var(--muted); }
-
-  .readme-body code {
-    background: var(--code-bg);
+ 
+  .pk { color: #7dd3fc; }
+  .pg { color: var(--green); }
+  .py { color: var(--yellow); }
+  .pr { color: var(--red); }
+  .pn { color: #fca5a5; }
+  .pp { color: var(--purple); }
+ 
+  /* PSEUDOCODE */
+  .pseudo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+ 
+  .pseudo-block {
+    background: #060707;
     border: 1px solid var(--border-mid);
-    border-radius: 3px;
-    padding: 1px 6px;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--accent);
+    border-radius: 10px;
+    overflow: hidden;
   }
-
-  .readme-body ul {
-    list-style: none;
+ 
+  .pseudo-header {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
   }
-
-  .readme-body li::before {
-    content: '→ ';
-    color: var(--accent);
+ 
+  .pseudo-title { font-size: 0.8rem; font-weight: 700; }
+  .pseudo-component { font-family: 'Space Mono', monospace; font-size: 0.55rem; color: var(--muted); }
+ 
+  .pseudo-body {
+    padding: 20px 18px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    line-height: 2;
+    color: var(--muted);
+    white-space: pre;
   }
-
-  @media (max-width: 800px) {
-    .arch-flow { grid-template-columns: 1fr; gap: 10px; }
-    .pseudo-grid { grid-template-columns: 1fr; }
-    .payload-row { grid-template-columns: 1fr; }
-    .overview-box { grid-template-columns: 1fr; }
+ 
+  .kw { color: var(--purple); }
+  .fn { color: var(--blue); }
+  .str { color: var(--green); }
+  .val { color: var(--orange); }
+  .cmt { color: #3a4a38; }
+  .st-g { color: var(--green); }
+  .st-y { color: var(--yellow); }
+  .st-r { color: var(--red); }
+ 
+  /* README */
+  .readme {
+    background: #060707;
+    border: 1px solid var(--border-mid);
+    border-radius: 10px;
+    overflow: hidden;
   }
+ 
+  .readme-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+  }
+ 
+  .readme-body {
+    padding: 24px 20px;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+ 
+  .readme-body h2 { font-size: 1rem; font-weight: 800; color: var(--text); margin: 20px 0 8px; }
+  .readme-body h2:first-child { margin-top: 0; }
+  .readme-body p { margin-bottom: 8px; }
+  .readme-body code { background: var(--border); border-radius: 3px; padding: 2px 6px; font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--accent); }
+  .readme-body ul { padding-left: 20px; }
+  .readme-body li { margin-bottom: 4px; }
 </style>
 </head>
 <body>
 <div class="wrapper">
-
+ 
   <!-- HEADER -->
   <div class="header">
     <div>
       <h1>FOCUS</h1>
       <div class="header-meta">
-        SYSTEM ARCHITECTURE DIAGRAM<br>
-        MIDTERM PROJECT — DTI PROGRAM<br>
-        DUKE UNIVERSITY
+        SYSTEM ARCHITECTURE DIAGRAM · V2.0<br>
+        AMBIENT FINANCIAL AWARENESS DEVICE<br>
+        DUKE DTI · 2026 · JA'MESHA ROBINSON
       </div>
     </div>
     <div class="header-badges">
-      <div class="badge">✦ REQUIREMENT: DEVICE CONNECTIVITY — MQTT</div>
-      <div class="badge">✦ REQUIREMENT: ML/LLM ENRICHMENT — CLAUDE AI</div>
-      <div class="badge">✦ REQUIREMENT: VISUAL PRESENTATION — DASHBOARD</div>
+      <span class="badge">MQTT · HIVEMQ</span>
+      <span class="badge">CLAUDE AI · PLAID API</span>
+      <span class="badge">RASPBERRY PI 4 · EDGE COMPUTE</span>
+      <span class="badge">ELEVENLABS · NEOPIXEL</span>
     </div>
   </div>
-
+ 
   <!-- SECTION 1: OVERVIEW -->
   <div class="section">
-    <div class="section-title">01 — System Functionality Overview</div>
+    <div class="section-title">01 — High Level Overview</div>
     <div class="overview-box">
       <div class="overview-item">
-        <div class="overview-label">What it does</div>
+        <div class="overview-label">What It Is</div>
         <div class="overview-title">Ambient Financial Awareness</div>
-        <div class="overview-desc">FOCUS connects to a user's bank accounts via Plaid API, analyzes each account daily using Claude AI, and communicates financial health through a physical glowing cube. Each face of the cube represents one account and glows green, yellow, or red based on spending health.</div>
+        <div class="overview-desc">A 3D printed lamp that connects to your real bank accounts via Plaid, glows green/yellow/red based on financial health, and speaks a personalized AI-generated daily summary using your name.</div>
       </div>
       <div class="overview-item">
-        <div class="overview-label">Key Features</div>
-        <div class="overview-title">6 Accounts, 1 Glance</div>
-        <div class="overview-desc">
-          — Plaid pulls live bank data (mocked for demo)<br>
-          — Claude scores each account 0–100<br>
-          — Plain-language nudge generated per account<br>
-          — MQTT publishes state to physical/simulated device<br>
-          — User dismisses resolved accounts with a tap<br>
-          — Dashboard syncs live with device state
-        </div>
+        <div class="overview-label">The Problem</div>
+        <div class="overview-title">Avoidance = Anxiety</div>
+        <div class="overview-desc">College students and young adults avoid checking their accounts because opening a banking app feels stressful. FOCUS removes that friction entirely — the lamp communicates financial health passively, no interaction required.</div>
       </div>
       <div class="overview-item">
-        <div class="overview-label">Core Insight</div>
-        <div class="overview-title">Awareness Without Avoidance</div>
-        <div class="overview-desc">Most people avoid finance apps when stressed. FOCUS removes the decision to check. The cube exists in the room — on a desk, nightstand, kitchen counter — providing passive awareness. No app opens required. Habit is not "use FOCUS." Habit is "exist where FOCUS lives."</div>
+        <div class="overview-label">The Solution</div>
+        <div class="overview-title">One Lamp. Everything.</div>
+        <div class="overview-desc">Plaid pulls live balance data every 10 seconds. Claude AI generates a personalized nudge. ElevenLabs speaks it in the morning by name. Two NeoPixel rings glow the right color all day. One power cable.</div>
       </div>
     </div>
   </div>
-
-  <!-- SECTION 2: ARCHITECTURE -->
+ 
+  <!-- SECTION 2: ARCHITECTURE FLOW -->
   <div class="section">
-    <div class="section-title">02 — System Architecture</div>
+    <div class="section-title">02 — System Architecture Flow</div>
     <div class="arch-flow">
-
-      <div class="arch-node">
-        <div class="node-label">Data Source</div>
-        <div class="node-title">Plaid API</div>
-        <div class="node-desc">Securely pulls bank transactions, balances, and spending history for 6 accounts. Mock JSON dataset used for prototype demo.</div>
-        <div class="node-tags">
-          <span class="tag hi">Plaid API</span>
-          <span class="tag">Mock JSON</span>
-          <span class="tag">6 Accounts</span>
-          <span class="tag">REST</span>
-        </div>
-      </div>
-
-      <div class="arch-arrow">
-        <div class="arrow-shaft"></div>
-        <div class="arrow-label">REST</div>
-      </div>
-
+ 
       <div class="arch-node">
         <div class="node-flag d1">DEVICE 1</div>
-        <div class="node-label">Backend — Python Flask</div>
-        <div class="node-title">Claude AI Engine</div>
-        <div class="node-desc">Receives account data. Calls Claude API per account. Returns readiness score (0–100) and plain-language nudge. Maps score to green / yellow / red state.</div>
+        <div class="node-label">Data Source</div>
+        <div class="node-title">Plaid API + Publisher.py</div>
+        <div class="node-desc">Plaid pulls live balance data from real bank accounts (USAA, Navy Federal, Capital One, Schwab). Publisher.py calculates health ratios, assigns green/yellow/red status, and publishes JSON payloads to MQTT every 10 seconds.</div>
         <div class="node-tags">
-          <span class="tag hi">Flask</span>
-          <span class="tag hi">Claude API</span>
-          <span class="tag">Python</span>
-          <span class="tag">Scoring Logic</span>
+          <span class="tag hi">plaid sandbox</span>
+          <span class="tag hi">publisher.py</span>
+          <span class="tag">python 3.10</span>
+          <span class="tag">paho-mqtt</span>
         </div>
       </div>
-
+ 
       <div class="arch-arrow">
         <div class="arrow-shaft"></div>
-        <div class="arrow-label">MQTT</div>
+        <div class="arrow-head">→</div>
+        <div class="arrow-label">MQTT<br>PUBLISH</div>
       </div>
-
+ 
       <div class="arch-node">
-        <div class="node-label">Communication</div>
-        <div class="node-title">MQTT Broker</div>
-        <div class="node-desc">HiveMQ free cloud broker. Routes messages from backend to subscribed devices. One topic per account. Bidirectional — device can publish dismiss events back.</div>
+        <div class="node-flag d3">BROKER</div>
+        <div class="node-label">Communication Layer</div>
+        <div class="node-title">HiveMQ Cloud Broker</div>
+        <div class="node-desc">HiveMQ hosted MQTT broker routes messages between the publisher on the laptop and the subscriber on the Raspberry Pi. Topic: focus/accounts. QoS 1 for delivery guarantee. Two separate processes communicate over the internet.</div>
         <div class="node-tags">
-          <span class="tag hi">HiveMQ</span>
-          <span class="tag">Pub/Sub</span>
-          <span class="tag">6 Topics</span>
-          <span class="tag">Bidirectional</span>
+          <span class="tag orange">hivemq cloud</span>
+          <span class="tag">mqtt 3.1.1</span>
+          <span class="tag">topic: focus/accounts</span>
+          <span class="tag">qos 1</span>
         </div>
       </div>
-
+ 
       <div class="arch-arrow">
         <div class="arrow-shaft"></div>
-        <div class="arrow-label">MQTT</div>
+        <div class="arrow-head">→</div>
+        <div class="arrow-label">MQTT<br>SUBSCRIBE</div>
       </div>
-
+ 
       <div class="arch-node">
         <div class="node-flag d2">DEVICE 2</div>
-        <div class="node-label">Visual Output</div>
-        <div class="node-title">Dashboard + Cube Sim</div>
-        <div class="node-desc">Web dashboard simulates the physical cube. 6 glowing panels update in real time. User can dismiss green accounts. Physical prototype: Raspberry Pi + RGB LED + accelerometer.</div>
+        <div class="node-label">Edge Compute · On-Device</div>
+        <div class="node-title">Raspberry Pi 4 + focus_pi.py</div>
+        <div class="node-desc">The Pi subscribes to MQTT, receives account health data, drives the NeoPixel rings to the correct color, reads ambient light via BH1750 for auto-brightness, and triggers Claude AI + ElevenLabs voice at the scheduled time. All running on-device.</div>
         <div class="node-tags">
-          <span class="tag hi">HTML/CSS/JS</span>
-          <span class="tag hi">MQTT.js</span>
-          <span class="tag">Raspberry Pi</span>
-          <span class="tag">RGB LED</span>
+          <span class="tag purple">raspberry pi 4</span>
+          <span class="tag purple">focus_pi.py</span>
+          <span class="tag">gpio 18</span>
+          <span class="tag">edge compute</span>
         </div>
       </div>
-
+ 
+      <div class="arch-arrow">
+        <div class="arrow-shaft"></div>
+        <div class="arrow-head">→</div>
+        <div class="arrow-label">DRIVES<br>OUTPUT</div>
+      </div>
+ 
+      <div class="arch-node">
+        <div class="node-flag d2">OUTPUT</div>
+        <div class="node-label">Physical + Voice Output</div>
+        <div class="node-title">Lamp + Voice</div>
+        <div class="node-desc">Two NeoPixel rings (24 LEDs total, daisy chained) glow green, yellow, or red based on overall account health. In ambient mode they breathe the user's chosen color. At the scheduled time Claude AI generates a summary and ElevenLabs speaks it with the user's name.</div>
+        <div class="node-tags">
+          <span class="tag hi">neopixel x2</span>
+          <span class="tag purple">claude ai</span>
+          <span class="tag orange">elevenlabs</span>
+          <span class="tag">usb speaker</span>
+          <span class="tag">3d printed lamp</span>
+        </div>
+      </div>
+ 
     </div>
   </div>
-
-  <!-- SECTION 3: DATA FLOW -->
+ 
+  <!-- SECTION 3: HARDWARE -->
   <div class="section">
-    <div class="section-title">03 — Data Flow</div>
-    <div style="background:var(--panel); border:1px solid var(--border-mid); border-radius:10px; padding:28px; overflow-x:auto;">
-      <div class="data-flow-grid">
-
-        <div class="df-step">
-          <div class="df-icon">🏦</div>
-          <div class="df-name">Bank<br>Accounts</div>
-          <div class="df-transform">RAW DATA</div>
+    <div class="section-title">03 — Hardware Components</div>
+    <div class="hardware-grid">
+ 
+      <div class="hw-card">
+        <div class="hw-icon">🥧</div>
+        <div class="hw-name">Raspberry Pi 4</div>
+        <div class="hw-spec">
+          4GB RAM · ARM Cortex-A72<br>
+          Runs focus_pi.py on-device<br>
+          Full Linux · Python 3.13
         </div>
-        <div class="df-arrow">
-          <div class="df-arrow-line"></div>
-          <div class="df-arrow-label">REST API</div>
-        </div>
-
-        <div class="df-step">
-          <div class="df-icon">🐍</div>
-          <div class="df-name">Flask<br>Backend</div>
-          <div class="df-transform">PARSE + PREP</div>
-        </div>
-        <div class="df-arrow">
-          <div class="df-arrow-line"></div>
-          <div class="df-arrow-label">API call</div>
-        </div>
-
-        <div class="df-step">
-          <div class="df-icon">🤖</div>
-          <div class="df-name">Claude<br>AI</div>
-          <div class="df-transform">SCORE + NUDGE</div>
-        </div>
-        <div class="df-arrow">
-          <div class="df-arrow-line"></div>
-          <div class="df-arrow-label">JSON response</div>
-        </div>
-
-        <div class="df-step">
-          <div class="df-icon">🗂️</div>
-          <div class="df-name">State<br>Mapper</div>
-          <div class="df-transform">GREEN/YLW/RED</div>
-        </div>
-        <div class="df-arrow">
-          <div class="df-arrow-line"></div>
-          <div class="df-arrow-label">MQTT publish</div>
-        </div>
-
-        <div class="df-step">
-          <div class="df-icon">📡</div>
-          <div class="df-name">MQTT<br>Broker</div>
-          <div class="df-transform">ROUTE MSG</div>
-        </div>
-        <div class="df-arrow">
-          <div class="df-arrow-line"></div>
-          <div class="df-arrow-label">MQTT subscribe</div>
-        </div>
-
-        <div class="df-step">
-          <div class="df-icon">💡</div>
-          <div class="df-name">Device<br>LED</div>
-          <div class="df-transform">GLOW COLOR</div>
-        </div>
-        <div class="df-arrow">
-          <div class="df-arrow-line"></div>
-          <div class="df-arrow-label">user tap</div>
-        </div>
-
-        <div class="df-step">
-          <div class="df-icon">✓</div>
-          <div class="df-name">Dismiss<br>Event</div>
-          <div class="df-transform">MQTT BACK</div>
-        </div>
-        <div class="df-arrow">
-          <div class="df-arrow-line"></div>
-          <div class="df-arrow-label">POST /dismiss</div>
-        </div>
-
-        <div class="df-step">
-          <div class="df-icon">🖥️</div>
-          <div class="df-name">Dashboard<br>Update</div>
-          <div class="df-transform">STATE SYNC</div>
-        </div>
-
+        <span class="hw-connection hw-power">USB-C POWER</span>
       </div>
+ 
+      <div class="hw-card">
+        <div class="hw-icon">💡</div>
+        <div class="hw-name">NeoPixel Ring x2</div>
+        <div class="hw-spec">
+          12 LEDs each · 24 total<br>
+          SKC6812 · RGBW<br>
+          Daisy chained · GPIO 18
+        </div>
+        <span class="hw-connection hw-gpio">GPIO 18 · 5V</span>
+      </div>
+ 
+      <div class="hw-card">
+        <div class="hw-icon">🏮</div>
+        <div class="hw-name">3D Printed Lamp</div>
+        <div class="hw-spec">
+          PLA filament · wavy fin design<br>
+          Diffuses NeoPixel glow<br>
+          Houses both rings + speaker
+        </div>
+        <span class="hw-connection hw-power">ENCLOSURE</span>
+      </div>
+ 
+      <div class="hw-card">
+        <div class="hw-icon">🔊</div>
+        <div class="hw-name">USB Speaker</div>
+        <div class="hw-spec">
+          3W · Plug and play<br>
+          Built-in audio decode<br>
+          ElevenLabs voice output
+        </div>
+        <span class="hw-connection hw-usb">USB PORT</span>
+      </div>
+ 
     </div>
   </div>
-
-  <!-- SECTION 4: PSEUDOCODE -->
+ 
+  <!-- SECTION 4: USER FLOW -->
   <div class="section">
-    <div class="section-title">04 — Pseudocode Implementation</div>
-    <div class="pseudo-grid">
-
-      <!-- FLASK BACKEND -->
-      <div class="pseudo-block">
-        <div class="pseudo-header">
-          <span class="pseudo-title">Flask Backend — Core Logic</span>
-          <span class="pseudo-component">DEVICE 1 / app.py</span>
-        </div>
-        <div class="pseudo-body"><span class="cmt">// ── SETUP ──────────────────────────────────</span>
-<span class="fn">INITIALIZE</span> Flask app on port <span class="val">5000</span>
-<span class="fn">INITIALIZE</span> MQTT client → connect to HiveMQ broker
-<span class="fn">LOAD</span> mock account data from accounts.json
-
-<span class="cmt">// ── CORE FUNCTION ───────────────────────────</span>
-<span class="kw">FUNCTION</span> <span class="fn">analyze_account</span>(account):
-  prompt = <span class="str">"Analyze this account: {account}"</span>
-           <span class="str">"Return JSON: {score: 0-100, nudge: string}"</span>
-
-  response = <span class="fn">CALL</span> Claude API with prompt
-  score    = <span class="fn">PARSE</span> score from response
-  nudge    = <span class="fn">PARSE</span> nudge from response
-
-  <span class="kw">IF</span> score >= <span class="val">70</span>:
-    state = <span class="st-g">"green"</span>
-  <span class="kw">ELSE IF</span> score >= <span class="val">40</span>:
-    state = <span class="st-y">"yellow"</span>
-  <span class="kw">ELSE</span>:
-    state = <span class="st-r">"red"</span>
-
-  <span class="kw">RETURN</span> { account_id, score, state, nudge }
-
-<span class="cmt">// ── ROUTE: TRIGGER ANALYSIS ─────────────────</span>
-<span class="kw">ROUTE</span> GET <span class="str">/analyze</span>:
-  <span class="kw">FOR</span> each account <span class="kw">IN</span> accounts:
-    result = <span class="fn">analyze_account</span>(account)
-
-    <span class="fn">MQTT PUBLISH</span> to topic <span class="str">"focus/{account.id}"</span>:
-      payload = {
-        account:   account.id,
-        score:     result.score,
-        state:     result.state,
-        nudge:     result.nudge,
-        dismissed: <span class="val">false</span>
-      }
-
-    <span class="fn">WAIT</span> <span class="val">1</span> second   <span class="cmt">// avoid API rate limits</span>
-
-  <span class="kw">RETURN</span> <span class="str">"Analysis complete"</span>
-
-<span class="cmt">// ── ROUTE: DISMISS ──────────────────────────</span>
-<span class="kw">ROUTE</span> POST <span class="str">/dismiss</span>:
-  account_id = <span class="fn">PARSE</span> request body
-
-  <span class="fn">MQTT PUBLISH</span> to topic <span class="str">"focus/{account_id}"</span>:
-    payload = { account: account_id, dismissed: <span class="val">true</span> }
-
-  <span class="kw">RETURN</span> <span class="str">"Dismissed"</span></div>
+    <div class="section-title">04 — User Flow</div>
+    <div class="flow-row">
+ 
+      <div class="flow-step">
+        <div class="flow-icon">🏦</div>
+        <div class="flow-name">Connect Bank</div>
+        <div class="flow-sub">Plaid Link · one-time setup</div>
       </div>
-
-      <!-- DASHBOARD -->
-      <div class="pseudo-block">
-        <div class="pseudo-header">
-          <span class="pseudo-title">Web Dashboard — Core Logic</span>
-          <span class="pseudo-component">DEVICE 2 / index.html</span>
-        </div>
-        <div class="pseudo-body"><span class="cmt">// ── SETUP ──────────────────────────────────</span>
-<span class="fn">DEFINE</span> accounts = [
-  <span class="str">"checking"</span>, <span class="str">"savings"</span>, <span class="str">"credit_card"</span>,
-  <span class="str">"car_payment"</span>, <span class="str">"rent_fund"</span>, <span class="str">"fun_money"</span>
-]
-
-<span class="fn">CONNECT</span> to MQTT broker via MQTT.js
-
-<span class="cmt">// ── RENDER PANELS ───────────────────────────</span>
-<span class="kw">FOR</span> each account <span class="kw">IN</span> accounts:
-  <span class="fn">RENDER</span> panel with:
-    name    = account
-    color   = <span class="str">"gray"</span>     <span class="cmt">// waiting for data</span>
-    nudge   = <span class="str">"Loading..."</span>
-    button  = <span class="str">"Dismiss"</span>  <span class="cmt">// hidden until green</span>
-
-  <span class="fn">SUBSCRIBE</span> to MQTT topic <span class="str">"focus/{account}"</span>
-
-<span class="cmt">// ── ON MESSAGE RECEIVED ─────────────────────</span>
-<span class="kw">ON</span> MQTT message:
-  payload = <span class="fn">PARSE</span> JSON from message
-
-  panel = <span class="fn">FIND</span> panel where id = payload.account
-
-  <span class="kw">IF</span> payload.dismissed = <span class="val">true</span>:
-    <span class="fn">SET</span> panel opacity → <span class="val">0.3</span>
-    <span class="fn">SET</span> panel color  → <span class="str">"gray"</span>
-    <span class="fn">SHOW</span> checkmark
-    <span class="fn">HIDE</span> dismiss button
-
-  <span class="kw">ELSE</span>:
-    <span class="fn">SET</span> panel glow  → payload.state
-    <span class="fn">SET</span> nudge text  → payload.nudge
-    <span class="fn">SET</span> score badge → payload.score
-    <span class="fn">ANIMATE</span> glow pulse
-    <span class="kw">IF</span> payload.state = <span class="st-g">"green"</span>:
-      <span class="fn">SHOW</span> dismiss button
-
-<span class="cmt">// ── ON DISMISS CLICK ────────────────────────</span>
-<span class="kw">ON</span> dismiss button click:
-  account_id = <span class="fn">GET</span> id from button
-
-  <span class="fn">POST</span> to Flask <span class="str">/dismiss</span>
-    body = { account: account_id }
-
-  <span class="cmt">// Dashboard updates on next MQTT message</span></div>
+      <div class="flow-arrow"><div class="flow-arrow-line"></div><div class="flow-arrow-label">live data</div></div>
+ 
+      <div class="flow-step">
+        <div class="flow-icon">⚡</div>
+        <div class="flow-name">Publisher Runs</div>
+        <div class="flow-sub">Balance + health every 10s</div>
       </div>
-
+      <div class="flow-arrow"><div class="flow-arrow-line"></div><div class="flow-arrow-label">MQTT publish</div></div>
+ 
+      <div class="flow-step">
+        <div class="flow-icon">☁️</div>
+        <div class="flow-name">HiveMQ Routes</div>
+        <div class="flow-sub">Cloud broker · focus/accounts</div>
+      </div>
+      <div class="flow-arrow"><div class="flow-arrow-line"></div><div class="flow-arrow-label">MQTT subscribe</div></div>
+ 
+      <div class="flow-step">
+        <div class="flow-icon">🥧</div>
+        <div class="flow-name">Pi Receives</div>
+        <div class="flow-sub">Edge compute · on device</div>
+      </div>
+      <div class="flow-arrow"><div class="flow-arrow-line"></div><div class="flow-arrow-label">drives GPIO</div></div>
+ 
+      <div class="flow-step">
+        <div class="flow-icon">💡</div>
+        <div class="flow-name">Lamp Glows</div>
+        <div class="flow-sub">Green · Yellow · Red</div>
+      </div>
+      <div class="flow-arrow"><div class="flow-arrow-line"></div><div class="flow-arrow-label">scheduled time</div></div>
+ 
+      <div class="flow-step">
+        <div class="flow-icon">🤖</div>
+        <div class="flow-name">Claude AI</div>
+        <div class="flow-sub">Personalized nudge generated</div>
+      </div>
+      <div class="flow-arrow"><div class="flow-arrow-line"></div><div class="flow-arrow-label">voice synthesis</div></div>
+ 
+      <div class="flow-step">
+        <div class="flow-icon">🔊</div>
+        <div class="flow-name">FOCUS Speaks</div>
+        <div class="flow-sub">"Grand rising, Mesha..."</div>
+      </div>
+ 
     </div>
   </div>
-
+ 
   <!-- SECTION 5: MQTT PAYLOADS -->
   <div class="section">
     <div class="section-title">05 — Sample MQTT Message Payloads</div>
     <div class="payload-row">
-
+ 
       <div class="payload-card">
         <div class="payload-card-header">
           <div class="dot dot-g"></div>
-          <span style="color:var(--green)">GREEN STATE — checking</span>
+          <span style="color:var(--green)">GREEN STATE — Money Market</span>
         </div>
         <div class="payload-card-body">
 {<br>
-&nbsp;&nbsp;<span class="pk">"account"</span>: <span class="pg">"checking"</span>,<br>
-&nbsp;&nbsp;<span class="pk">"score"</span>: <span class="pn">74</span>,<br>
-&nbsp;&nbsp;<span class="pk">"state"</span>: <span class="pg">"green"</span>,<br>
-&nbsp;&nbsp;<span class="pk">"nudge"</span>: <span class="pg">"Spend with<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;confidence today."</span>,<br>
-&nbsp;&nbsp;<span class="pk">"dismissed"</span>: <span class="pn">false</span><br>
+&nbsp;&nbsp;<span class="pk">"name"</span>: <span class="pg">"Plaid Money Market"</span>,<br>
+&nbsp;&nbsp;<span class="pk">"balance"</span>: <span class="pn">43200.00</span>,<br>
+&nbsp;&nbsp;<span class="pk">"goal"</span>: <span class="pn">10000.00</span>,<br>
+&nbsp;&nbsp;<span class="pk">"type"</span>: <span class="pg">"savings"</span>,<br>
+&nbsp;&nbsp;<span class="pk">"health"</span>: <span class="pg">"green"</span><br>
 }
         </div>
       </div>
-
+ 
       <div class="payload-card">
         <div class="payload-card-header">
           <div class="dot dot-y"></div>
-          <span style="color:var(--yellow)">YELLOW STATE — credit_card</span>
+          <span style="color:var(--yellow)">YELLOW STATE — Credit Card</span>
         </div>
         <div class="payload-card-body">
 {<br>
-&nbsp;&nbsp;<span class="pk">"account"</span>: <span class="py">"credit_card"</span>,<br>
-&nbsp;&nbsp;<span class="pk">"score"</span>: <span class="pn">52</span>,<br>
-&nbsp;&nbsp;<span class="pk">"state"</span>: <span class="py">"yellow"</span>,<br>
-&nbsp;&nbsp;<span class="pk">"nudge"</span>: <span class="py">"Stay under $60.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bills incoming."</span>,<br>
-&nbsp;&nbsp;<span class="pk">"dismissed"</span>: <span class="pn">false</span><br>
+&nbsp;&nbsp;<span class="pk">"name"</span>: <span class="py">"Plaid Credit Card"</span>,<br>
+&nbsp;&nbsp;<span class="pk">"balance"</span>: <span class="pn">410.00</span>,<br>
+&nbsp;&nbsp;<span class="pk">"goal"</span>: <span class="pn">500.00</span>,<br>
+&nbsp;&nbsp;<span class="pk">"type"</span>: <span class="py">"credit"</span>,<br>
+&nbsp;&nbsp;<span class="pk">"health"</span>: <span class="py">"yellow"</span><br>
 }
         </div>
       </div>
-
+ 
       <div class="payload-card">
         <div class="payload-card-header">
           <div class="dot dot-r"></div>
-          <span style="color:var(--red)">RED STATE — rent_fund</span>
+          <span style="color:var(--red)">RED STATE — Checking</span>
         </div>
         <div class="payload-card-body">
 {<br>
-&nbsp;&nbsp;<span class="pk">"account"</span>: <span class="pr">"rent_fund"</span>,<br>
-&nbsp;&nbsp;<span class="pk">"score"</span>: <span class="pn">22</span>,<br>
-&nbsp;&nbsp;<span class="pk">"state"</span>: <span class="pr">"red"</span>,<br>
-&nbsp;&nbsp;<span class="pk">"nudge"</span>: <span class="pr">"Hold tight this<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;week. Let this rest."</span>,<br>
-&nbsp;&nbsp;<span class="pk">"dismissed"</span>: <span class="pn">false</span><br>
+&nbsp;&nbsp;<span class="pk">"name"</span>: <span class="pr">"Plaid Checking"</span>,<br>
+&nbsp;&nbsp;<span class="pk">"balance"</span>: <span class="pn">110.00</span>,<br>
+&nbsp;&nbsp;<span class="pk">"goal"</span>: <span class="pn">500.00</span>,<br>
+&nbsp;&nbsp;<span class="pk">"type"</span>: <span class="pr">"savings"</span>,<br>
+&nbsp;&nbsp;<span class="pk">"health"</span>: <span class="pr">"red"</span><br>
 }
         </div>
       </div>
-
+ 
     </div>
   </div>
-
-  <!-- SECTION 6: README -->
+ 
+  <!-- SECTION 6: PSEUDOCODE -->
   <div class="section">
-    <div class="section-title">06 — README.md Preview</div>
-    <div class="readme">
-      <div class="readme-header">
-        📄 README.md — GitHub Repository
+    <div class="section-title">06 — Pseudocode Implementation</div>
+    <div class="pseudo-grid">
+ 
+      <div class="pseudo-block">
+        <div class="pseudo-header">
+          <span class="pseudo-title">Publisher.py — Core Logic</span>
+          <span class="pseudo-component">DEVICE 1 / Mac Laptop</span>
+        </div>
+        <div class="pseudo-body"><span class="cmt">// ── SETUP ──────────────────────────────────</span>
+<span class="fn">LOAD</span> .env (PLAID_CLIENT_ID, PLAID_SECRET, PLAID_ACCESS_TOKEN)
+<span class="fn">INITIALIZE</span> Plaid client → sandbox environment
+<span class="fn">INITIALIZE</span> MQTT client → connect to HiveMQ broker
+ 
+<span class="cmt">// ── HEALTH CALCULATION ──────────────────────</span>
+<span class="kw">FUNCTION</span> <span class="fn">get_health</span>(account):
+  ratio = account.balance / account.goal
+ 
+  <span class="kw">IF</span> account.type == <span class="str">"credit"</span>:
+    <span class="kw">IF</span> ratio &lt;= 0.6: <span class="kw">RETURN</span> <span class="st-g">"green"</span>
+    <span class="kw">IF</span> ratio &lt;= 0.9: <span class="kw">RETURN</span> <span class="st-y">"yellow"</span>
+    <span class="kw">RETURN</span> <span class="st-r">"red"</span>
+  <span class="kw">ELSE</span>:
+    <span class="kw">IF</span> ratio >= 1.0: <span class="kw">RETURN</span> <span class="st-g">"green"</span>
+    <span class="kw">IF</span> ratio >= 0.5: <span class="kw">RETURN</span> <span class="st-y">"yellow"</span>
+    <span class="kw">RETURN</span> <span class="st-r">"red"</span>
+ 
+<span class="cmt">// ── MAIN LOOP ───────────────────────────────</span>
+<span class="kw">LOOP</span> every <span class="val">10</span> seconds:
+  accounts = <span class="fn">Plaid.get_balances</span>(ACCESS_TOKEN)
+ 
+  <span class="kw">FOR</span> each account:
+    account.health = <span class="fn">get_health</span>(account)
+ 
+  payload = <span class="fn">JSON.stringify</span>(accounts)
+  <span class="fn">MQTT.publish</span>(<span class="str">"focus/accounts"</span>, payload)
+  <span class="fn">WRITE</span> payload → focus_data.json</div>
       </div>
+ 
+      <div class="pseudo-block">
+        <div class="pseudo-header">
+          <span class="pseudo-title">focus_pi.py — Core Logic</span>
+          <span class="pseudo-component">DEVICE 2 / Raspberry Pi 4</span>
+        </div>
+        <div class="pseudo-body"><span class="cmt">// ── SETUP ──────────────────────────────────</span>
+<span class="fn">INITIALIZE</span> NeoPixel rings → GPIO 18, <span class="val">24</span> pixels
+<span class="fn">INITIALIZE</span> MQTT client → subscribe focus/accounts
+<span class="fn">INITIALIZE</span> Claude AI client (Anthropic API)
+<span class="fn">INITIALIZE</span> ElevenLabs client
+<span class="fn">INITIALIZE</span> pygame audio → USB speaker hw:3,0
+ 
+<span class="cmt">// ── ON MQTT MESSAGE ─────────────────────────</span>
+<span class="kw">ON</span> message received:
+  accounts = <span class="fn">JSON.parse</span>(payload)
+  health   = <span class="fn">get_overall_health</span>(accounts)
+ 
+  <span class="kw">IF</span> health == <span class="st-g">"green"</span>:  <span class="fn">ring.fill</span>(GREEN)
+  <span class="kw">IF</span> health == <span class="st-y">"yellow"</span>: <span class="fn">ring.fill</span>(YELLOW)
+  <span class="kw">IF</span> health == <span class="st-r">"red"</span>:    <span class="fn">ring.fill</span>(RED)
+ 
+  <span class="fn">SET</span> in_alert_mode = <span class="val">true</span>
+  <span class="fn">TIMER</span>(<span class="val">30s</span>) → exit_alert_mode → ambient_breathe
+ 
+<span class="cmt">// ── SCHEDULED VOICE ─────────────────────────</span>
+<span class="kw">EVERY</span> <span class="val">30</span> seconds:
+  <span class="fn">read_config</span>() → get user_name, lamp_color, speak_hour
+ 
+  <span class="kw">IF</span> now.hour == speak_hour AND now.minute == <span class="val">0</span>:
+    summary = <span class="fn">Claude.generate</span>(accounts, user_name, time_of_day)
+    audio   = <span class="fn">ElevenLabs.speak</span>(summary, voice=<span class="str">"Rachel"</span>)
+    <span class="fn">pygame.play</span>(audio) → USB speaker</div>
+      </div>
+ 
+    </div>
+  </div>
+ 
+  <!-- SECTION 7: README -->
+  <div class="section">
+    <div class="section-title">07 — README</div>
+    <div class="readme">
+      <div class="readme-header">📄 README.md — github.com/Regul8r/FOCUS</div>
       <div class="readme-body">
         <h2>FOCUS — Ambient Financial Awareness Device</h2>
-        <p>FOCUS is a physical + digital product that helps college students and young adults maintain financial awareness without opening a budgeting app. A glowing cube sits on your desk — each face represents one bank account and glows green, yellow, or red based on Claude AI's daily analysis of your spending health.</p>
-
+        <p>FOCUS is a physical ambient lamp that connects to your real bank accounts via Plaid and communicates financial health through color and voice. Two NeoPixel rings glow green, yellow, or red based on account health. Every morning, Claude AI generates a personalized summary that ElevenLabs reads aloud by your name.</p>
+ 
         <h2>How It Works</h2>
-        <p>Plaid API (mocked for demo) pulls transaction and balance data for 6 accounts. A Python Flask backend sends each account to Claude AI, which returns a readiness score (0–100) and a plain-language nudge. The backend publishes each account's state to an MQTT broker. A web dashboard (simulating the physical cube) subscribes to those topics and updates in real time. Users can tap to dismiss green accounts — that dismissal publishes back through MQTT.</p>
-
+        <p>Plaid API pulls live balance data from real accounts (sandbox for demo). Publisher.py calculates health ratios and publishes JSON to HiveMQ via MQTT every 10 seconds. A Raspberry Pi 4 subscribes to that topic, drives the NeoPixel rings, and at the scheduled time calls Claude AI + ElevenLabs to deliver a personalized voice summary through a USB speaker inside the 3D printed lamp.</p>
+ 
         <h2>Running the Prototype</h2>
-        <p><code>Terminal 1:</code> <code>python app.py</code> — starts Flask on localhost:5000</p>
-        <p><code>Terminal 2:</code> open <code>index.html</code> in browser — connects to MQTT broker</p>
-        <p>Navigate to <code>localhost:5000/analyze</code> to trigger analysis and watch the dashboard update live.</p>
-
+        <p><code>Terminal 1:</code> <code>python3 publisher.py</code> — starts Plaid data flow + MQTT publish</p>
+        <p><code>Terminal 2:</code> <code>streamlit run focus_app.py</code> — mobile dashboard on port 8501</p>
+        <p><code>Raspberry Pi:</code> <code>sudo python3 focus_pi.py</code> — drives NeoPixels + voice</p>
+ 
         <h2>How Information Moves</h2>
         <ul>
-          <li>Mock JSON → Flask parses account data</li>
-          <li>Flask → Claude API generates score + nudge per account</li>
-          <li>Flask → MQTT broker publishes state to topic per account</li>
-          <li>Dashboard subscribes → panels update color + nudge text</li>
-          <li>User dismisses → POST to Flask → MQTT publishes dismissed state</li>
+          <li>Plaid API → live bank balances pulled every 10 seconds</li>
+          <li>Publisher.py → calculates green/yellow/red health → MQTT publish to HiveMQ</li>
+          <li>Raspberry Pi → subscribes to MQTT → NeoPixel rings update color</li>
+          <li>Scheduled time → Claude AI generates nudge → ElevenLabs speaks by user name</li>
+          <li>Streamlit dashboard → mobile UI with color picker, time setter, AI insights</li>
         </ul>
-
+ 
         <h2>Tech Stack</h2>
-        <p><code>Python / Flask</code> &nbsp;<code>Anthropic Claude API</code> &nbsp;<code>MQTT / HiveMQ</code> &nbsp;<code>HTML CSS JS</code> &nbsp;<code>Plaid API (mocked)</code></p>
+        <p><code>Python 3.10</code> &nbsp;<code>Plaid API</code> &nbsp;<code>Anthropic Claude</code> &nbsp;<code>ElevenLabs</code> &nbsp;<code>MQTT / HiveMQ</code> &nbsp;<code>Streamlit</code> &nbsp;<code>Raspberry Pi 4</code> &nbsp;<code>NeoPixel / rpi_ws281x</code></p>
       </div>
     </div>
   </div>
-
+ 
 </div>
 </body>
 </html>
