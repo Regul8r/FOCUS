@@ -141,7 +141,7 @@ def render_face(account, col):
         <div class="face-card face-{health}">
             <div class="face-icon">{account['icon']}</div>
             <div class="face-name">{account['name']}</div>
-            <div class="face-balance">${account['balance']:,.2f}</div>
+            <div class="face-balance">{"$"+f"{account['balance']:,.2f}"}</div>
             {progress_bar(account)}
         </div>""", unsafe_allow_html=True)
 
